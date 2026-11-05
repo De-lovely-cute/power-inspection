@@ -1,0 +1,21 @@
+﻿{
+  "name": "power-inspection",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" \u0026\u0026 exit 1",
+    "generate:api": "openapi-typescript packages/contracts/openapi.json -o apps/web/src/api/schema.d.ts",
+    "dev:web": "pnpm --dir apps/web dev --host 127.0.0.1",
+    "dev:api": "python -m uv --directory apps/api run uvicorn app.main:app --reload --host 127.0.0.1 --port 8000",
+    "build:web": "pnpm --dir apps/web build",
+    "dev": "concurrently -k -n WEB,API \"pnpm dev:web\" \"pnpm dev:api\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^10.0.6",
+    "openapi-typescript": "^7.13.0"
+  }
+}
